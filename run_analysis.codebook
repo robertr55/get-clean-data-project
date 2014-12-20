@@ -1,0 +1,114 @@
+Robert Ross Codebook for Course Project Tidy Data set
+
+For more information about the source of this data, please refer to the README.txt file that is part of the zip download.
+
+PREPARATION
+The zip file was downloaded from https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip 
+and then unzipped into a folder called "UCI HAR Dataset".  An abbreviated description of the data from the README.txt file follows:
+
+The experiments have been carried out with a group of 30 volunteers within an age bracket of 19-48 years. Each person performed six activities (WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING) wearing a smartphone (Samsung Galaxy S II) on the waist. Each person was assigned an ID (just an integer value from 1-30), while the six activities were also stored as integers (1-6).
+
+The original data contained:
+- A 561-feature vector with time and frequency domain variables. 
+- Its activity label. 
+- An identifier of the subject who carried out the experiment.
+
+I created the tidy data set following the steps outlined in the README.md file.
+- read in data files
+- merge the test and training data together into a single data frame
+- convert feature/variable names to be clearer and easier to read than the original ones 
+- assign these better names as data frame column names 
+- substitute descriptive names for activity values (sitting, walking, etc.)
+- extract all columns with "mean" or "std" in feature description, plus the subject and activity codes
+- sort/order the reduced dataset by subject number and activity
+- summarise by calculating the mean of each variable for each subject and activity
+- write out the final tidy data set with 180 rows of 81 columns
+
+The data columns (in the ProjectTidyDataset.txt file) are described/created as follows (although I suspect this data won't show up nicely spaced into 3 columns like it does for me:-):
+
+Raw Data Name					ProjectTidyDataset.txt Column Name		Conversion
+----------------------------	----------------------------------		------------------------------
+from subject_train & 			subject									none (subject IDs numbered from 1-30)
+subject_test files
+from y_train and y_test files	activity								converted from code (1-6) to char
+																		value (SITTING, WALKING, etc.) using values in activity_labels.txt file
+tBodyAcc-mean()-X				TimeBodyAcc.mean.X	mean of all these normalized values summarized for 1 subject, 1 activity
+tBodyAcc-mean()-Y				TimeBodyAcc.mean.Y						same as above
+tBodyAcc-mean()-Z				TimeBodyAcc.mean.Z						same as above
+tBodyAcc-std()-X				TimeBodyAcc.std.X						same as above
+tBodyAcc-std()-Y				TimeBodyAcc.std.Y						same as above
+tBodyAcc-std()-Z				TimeBodyAcc.std.Z						same as above
+tGravityAcc-mean()-X			TimeGravityAcc.mean.X					same as above
+tGravityAcc-mean()-Y			TimeGravityAcc.mean.Y					same as above
+tGravityAcc-mean()-Z			TimeGravityAcc.mean.Z					same as above
+tGravityAcc-std()-X				TimeGravityAcc.std.X					same as above
+tGravityAcc-std()-Y				TimeGravityAcc.std.Y					same as above
+tGravityAcc-std()-Z				TimeGravityAcc.std.Z					same as above
+tBodyAccJerk-mean()-X			TimeBodyAccJerk.mean.X					same as above
+tBodyAccJerk-mean()-Y			TimeBodyAccJerk.mean.Y					same as above
+tBodyAccJerk-mean()-Z			TimeBodyAccJerk.mean.Z					same as above
+tBodyAccJerk-std()-X			TimeBodyAccJerk.std.X					same as above
+tBodyAccJerk-std()-Y			TimeBodyAccJerk.std.Y					same as above
+tBodyAccJerk-std()-Z			TimeBodyAccJerk.std.Z					same as above
+tBodyGyro-mean()-X				TimeBodyGyro.mean.X						same as above
+tBodyGyro-mean()-Y				TimeBodyGyro.mean.Y						same as above
+tBodyGyro-mean()-Z				TimeBodyGyro.mean.Z						same as above
+tBodyGyro-std()-X				TimeBodyGyro.std.X						same as above
+tBodyGyro-std()-Y				TimeBodyGyro.std.Y						same as above
+tBodyGyro-std()-Z				TimeBodyGyro.std.Z						same as above
+tBodyGyroJerk-mean()-X			TimeBodyGyroJerk.mean.X					same as above
+tBodyGyroJerk-mean()-Y			TimeBodyGyroJerk.mean.Y					same as above
+tBodyGyroJerk-mean()-Z			TimeBodyGyroJerk.mean.Z					same as above
+tBodyGyroJerk-std()-X			TimeBodyGyroJerk.std.X					same as above
+tBodyGyroJerk-std()-Y			TimeBodyGyroJerk.std.Y					same as above
+tBodyGyroJerk-std()-Z			TimeBodyGyroJerk.std.Z					same as above
+tBodyAccMag-mean()				TimeBodyAccMag.mean						same as above
+tBodyAccMag-std()				TimeBodyAccMag.std						same as above
+tGravityAccMag-mean()			TimeGravityAccMag.mean					same as above
+tGravityAccMag-std()			TimeGravityAccMag.std					same as above
+tBodyAccJerkMag-mean()			TimeBodyAccJerkMag.mean					same as above
+tBodyAccJerkMag-std()			TimeBodyAccJerkMag.std					same as above
+tBodyGyroMag-mean()				TimeBodyGyroMag.mean					same as above
+tBodyGyroMag-std()				TimeBodyGyroMag.std						same as above
+tBodyGyroJerkMag-mean()			TimeBodyGyroJerkMag.mean				same as above
+tBodyGyroJerkMag-std()			TimeBodyGyroJerkMag.std					same as above
+fBodyAcc-mean()-X				FrequencyBodyAcc.mean.X					same as above
+fBodyAcc-mean()-Y				FrequencyBodyAcc.mean.Y					same as above
+fBodyAcc-mean()-Z				FrequencyBodyAcc.mean.Z					same as above
+fBodyAcc-std()-X				FrequencyBodyAcc.std.X					same as above
+fBodyAcc-std()-Y				FrequencyBodyAcc.std.Y					same as above
+fBodyAcc-std()-Z				FrequencyBodyAcc.std.Z					same as above
+fBodyAcc-meanFreq()-X			FrequencyBodyAcc.meanFreq.X				same as above
+fBodyAcc-meanFreq()-Y			FrequencyBodyAcc.meanFreq.Y				same as above
+fBodyAcc-meanFreq()-Z			FrequencyBodyAcc.meanFreq.Z				same as above
+fBodyAccJerk-mean()-X			FrequencyBodyAccJerk.mean.X				same as above
+fBodyAccJerk-mean()-Y			FrequencyBodyAccJerk.mean.Y				same as above
+fBodyAccJerk-mean()-Z			FrequencyBodyAccJerk.mean.Z				same as above
+fBodyAccJerk-std()-X			FrequencyBodyAccJerk.std.X				same as above
+fBodyAccJerk-std()-Y			FrequencyBodyAccJerk.std.Y				same as above
+fBodyAccJerk-std()-Z			FrequencyBodyAccJerk.std.Z				same as above
+fBodyAccJerk-meanFreq()-X		FrequencyBodyAccJerk.meanFreq.X			same as above
+fBodyAccJerk-meanFreq()-Y		FrequencyBodyAccJerk.meanFreq.Y			same as above
+fBodyAccJerk-meanFreq()-Z		FrequencyBodyAccJerk.meanFreq.Z			same as above
+fBodyGyro-mean()-X				FrequencyBodyGyro.mean.X				same as above
+fBodyGyro-mean()-Y				FrequencyBodyGyro.mean.Y				same as above
+fBodyGyro-mean()-Z				FrequencyBodyGyro.mean.Z				same as above
+fBodyGyro-std()-X				FrequencyBodyGyro.std.X					same as above
+fBodyGyro-std()-Y				FrequencyBodyGyro.std.Y					same as above
+fBodyGyro-std()-Z				FrequencyBodyGyro.std.Z					same as above
+fBodyGyro-meanFreq()-X			FrequencyBodyGyro.meanFreq.X			same as above
+fBodyGyro-meanFreq()-Y			FrequencyBodyGyro.meanFreq.Y			same as above
+fBodyGyro-meanFreq()-Z			FrequencyBodyGyro.meanFreq.Z			same as above
+fBodyAccMag-mean()				FrequencyBodyAccMag.mean				same as above
+fBodyAccMag-std()				FrequencyBodyAccMag.std					same as above
+fBodyAccMag-meanFreq()			FrequencyBodyAccMag.meanFreq			same as above
+fBodyBodyAccJerkMag-mean()		FrequencyBodyBodyAccJerkMag.mean		same as above
+fBodyBodyAccJerkMag-std()		FrequencyBodyBodyAccJerkMag.std			same as above
+fBodyBodyAccJerkMag-meanFreq()	FrequencyBodyBodyAccJerkMag.meanFreq	same as above
+fBodyBodyGyroMag-mean()			FrequencyBodyBodyGyroMag.mean			same as above
+fBodyBodyGyroMag-std()			FrequencyBodyBodyGyroMag.std			same as above
+fBodyBodyGyroMag-meanFreq()		FrequencyBodyBodyGyroMag.meanFreq		same as above
+fBodyBodyGyroJerkMag-mean()		FrequencyBodyBodyGyroJerkMag.mean		same as above
+fBodyBodyGyroJerkMag-std()		FrequencyBodyBodyGyroJerkMag.std		same as above
+fBodyBodyGyroJerkMag-meanFreq()	FrequencyBodyBodyGyroJerkMag.meanFreq	same as above
+
